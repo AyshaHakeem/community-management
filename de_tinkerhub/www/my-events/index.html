@@ -1,0 +1,42 @@
+{%  extends "templates/web.html" %}
+
+{% block title %}{{ _("Past Events") }}{% endblock %}
+
+<div class="sidebar-column col-sm-{{ 2 }}">
+    {% block page_sidebar %}
+    {% include "templates/side-bar.html" %}
+    {% endblock %}
+</div>
+
+{% block page_content %}
+
+{% if registered_events %}
+<h1>Registered Events</h1>
+<section>
+    {%- for event in registered_events %}     
+        <div>
+            <a href="{{frappe.utils.get_url()}}/events/{{event.name}}">{{ event.title }}</a>
+        </div>
+        
+    {% endfor %}
+</section>
+{% endif %}
+
+{% if past_events %}
+<h1>Past Events</h1>
+<section>
+    {%- for event in past_events %}     
+        <div>
+            <a href="{{frappe.utils.get_url()}}/events/{{event.name}}">{{ event.title }}</a>
+        </div>
+        
+    {% endfor %}
+</section>
+{% endif %}
+
+{% if not registered_events and not past_events %}
+    <h6>Events you've registered for will be listed here.</h6>
+{% endif %}
+
+
+{% endblock %}

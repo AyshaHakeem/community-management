@@ -1,0 +1,155 @@
+{%  extends "templates/web.html" %}
+
+<div class="sidebar-column col-sm-{{ 2 }}">
+  {% block page_sidebar %}
+  {% include "templates/side-bar.html" %}
+  {% endblock %}
+</div>
+
+{% block title %}{{ _("Event Details Events") }}{% endblock %}
+
+{% block page_content %}
+
+<div class="breadcrumb">
+  <a class="dark-links" href="/admin-portal">{{ _("Admin Portal") }}</a>
+  <img class="ml-1 mr-1" src="/assets/lms/icons/chevron-right.svg">
+  <span class="breadcrumb-destination">{{ event.title  }}</span>
+  <img class="ml-1 mr-1" src="/assets/lms/icons/chevron-right.svg">
+  <span class="breadcrumb-destination"> Registrants </span>
+</div>
+
+<h2>{{event.title}}</h2>
+
+<h4>Event registrants</h4>
+{% if registrants %} 
+  <table class="table" id="email-list">
+    <tr>
+      <th>Email</th>
+      <th>Participant</th>
+      {% if event.skills %}
+      <th>Add Skill</th>
+      {% endif %}
+    </tr>
+    {%- for registrant in registrants %}   
+    <tr>
+      {%- set participant_checkbox = registrant.is_participant %}
+      {%- set skill_checkbox = registrant.is_participant and registrant.add_skill %}
+      {%- set skill_disabled = not participant_checkbox %}
+      <td>{{ registrant.email }}</td> 
+      <td><input type="checkbox" name="email" value="{{ registrant.email }}" {% if participant_checkbox %}checked{% endif %}></td>
+      {% if event.skills %}
+      <td><input type="checkbox" class="skill" name="skilled" value="{{ registrant.email }}" {% if skill_checkbox %}checked{% endif %} {% if skill_disabled %}disabled{% endif %}></td>
+      {% endif %}
+    </tr> 
+    {% endfor %}
+  </table>
+  
+  <button class="btn" id="submit-button">Submit</button>
+
+{% else %}
+<h4> No registrations yet</h4>
+{% endif %}
+
+
+{% if questions %}
+
+<div class="datatable-wrapper">
+  <h4>Form Submissions</h4>
+  <table class="table" style="margin:30px 0 0 0">
+    <tr>
+      <th>Email</th>
+      {%- for q in questions %} 
+      <th>{{q.question}}</th>  
+      {% endfor %}
+    </tr>
+    {%- for i in qa %} 
+    <tr>
+      <td>{{i[0]}}</td>
+      {%- for q in questions %}
+      <td class="ans">{{i[1][q.question] or '' }}<br></td>
+      {% endfor %} 
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% endif %}
+  
+<script>
+
+frappe.ready(function() {
+  // Handle form submission when the submit button is clicked
+  let checkboxes = document.getElementsByName('email'),
+    registrants = [],
+    selectedEmails = [],
+    skilled = document.getElementsByName('skilled'),
+    addSkills = []
+
+// Loop through each first checkbox and add an event listener
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', (event) => {
+
+      let row = event.target.parentNode.parentNode;
+      skill = row.querySelector('.skill')
+      skill.checked = event.target.checked;
+      skill.disabled = !event.target.checked;
+
+  });
+});
+
+  document.getElementById('submit-button').addEventListener('click', function() {
+    // Loop through all email checkboxes and add the selected emails to the array
+    for (var i = 0; i < checkboxes.length; i++) {
+      registrants.push(checkboxes[i].value) // all registrants
+      if (checkboxes[i].checked) {
+        selectedEmails.push(checkboxes[i].value); // all participants
+      }
+    }
+
+    for (var i = 0; i < skilled.length; i++) {
+      if (skilled[i].checked) {
+        addSkills.push(skilled[i].value); // skilled participants
+      }
+    }
+
+    // Call the function to edit/create records in 'Event Participant' doctype
+    editOrCreateEventParticipants(registrants, selectedEmails, addSkills);
+  });
+
+  // Function to edit/create records in 'Event Participant' doctype
+  function editOrCreateEventParticipants(registrants, participants, skilled) {
+    let url = window.location.href,
+        event_id = url.split('/')[4]
+    // Use AJAX to send the selected emails to the server and edit/create records
+    frappe.call({
+      method: 'de_tinkerhub.services.rest.part',
+      args: {
+        event: event_id,
+        registrants: registrants,
+        participants: selectedEmails,
+        skilledParticipants: skilled
+      },
+      callback: function(response) {
+        if (response.message) {
+          frappe.msgprint({
+            title: __('Notification'),
+            indicator: 'green',
+            message: __('Document updated successfully')
+          });
+
+          setTimeout(function () {
+            window.location.reload();
+          }, 3000);
+          
+        } else {
+          // Error: Handle the error response if needed
+          console.error('Error editing/creating event participants:', response.exc);
+        }
+      }
+    });
+  }
+});
+
+</script>
+
+{% endblock %}

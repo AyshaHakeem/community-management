@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include de_tinkerhub *.css
+recursive-include de_tinkerhub *.csv
+recursive-include de_tinkerhub *.html
+recursive-include de_tinkerhub *.ico
+recursive-include de_tinkerhub *.js
+recursive-include de_tinkerhub *.json
+recursive-include de_tinkerhub *.md
+recursive-include de_tinkerhub *.png
+recursive-include de_tinkerhub *.py
+recursive-include de_tinkerhub *.svg
+recursive-include de_tinkerhub *.txt
+recursive-exclude de_tinkerhub *.pyc

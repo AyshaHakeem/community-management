@@ -1,0 +1,59 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-30 16:13:16.025135",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "question",
+  "answer_1",
+  "answer_2",
+  "answer_3",
+  "answer_4"
+ ],
+ "fields": [
+  {
+   "fieldname": "question",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Question"
+  },
+  {
+   "fieldname": "answer_1",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Answer 1"
+  },
+  {
+   "fieldname": "answer_2",
+   "fieldtype": "Small Text",
+   "label": "Answer 2"
+  },
+  {
+   "fieldname": "answer_3",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Answer 3"
+  },
+  {
+   "fieldname": "answer_4",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Answer 4"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-08-09 15:09:55.422281",
+ "modified_by": "Administrator",
+ "module": "De Tinkerhub",
+ "name": "Registration Quiz Answer",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

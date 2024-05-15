@@ -1,0 +1,98 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"aTfjKijmJl\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Dashboard</span>\",\"col\":12}},{\"id\":\"dBSfHAaR0n\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Events \",\"col\":3}},{\"id\":\"CRUoTp-WYG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Participant List\",\"col\":3}},{\"id\":\"Gc9kaYyCFs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Assignments\",\"col\":3}},{\"id\":\"vOt0Nd55f0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Feedbacks\",\"col\":3}},{\"id\":\"I4jaJxRve0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Learner\",\"col\":3}},{\"id\":\"PAFB1svstb\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"College\",\"col\":3}},{\"id\":\"tBl-S8EC3a\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Event Registration\",\"col\":3}}]",
+ "creation": "2023-07-04 12:09:02.645536",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "color-rank",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Events",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "registration",
+   "link_count": 0,
+   "link_to": "Event Registration",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-05-15 22:53:22.605935",
+ "modified_by": "Administrator",
+ "module": "De Tinkerhub",
+ "name": "Events",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [
+  {
+   "role": "Event Admin"
+  },
+  {
+   "role": "Campus Lead"
+  }
+ ],
+ "sequence_id": 1.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Event Registration",
+   "link_to": "Event Registration",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Events ",
+   "link_to": "Event Custom",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Assignments",
+   "link_to": "Assignment Submission",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Participant List",
+   "link_to": "Event Participant",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Feedbacks",
+   "link_to": "Feedback Submission",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Learner",
+   "link_to": "Learner",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "College",
+   "link_to": "College",
+   "type": "DocType"
+  }
+ ],
+ "title": "Events"
+}

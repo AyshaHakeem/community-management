@@ -1,0 +1,133 @@
+{% extends "templates/base.html" %}
+<!-- {% block title %}
+    {% if has_custom %} {{ quiz.title}} 
+    {% else %} Register For Event
+    {% endif %}
+{% endblock %} -->
+
+{% block content %}
+{% if True %}
+<div class="markdown-source lesson-content-card" style="min-width: 600px; display: block; margin-left: auto; margin-right: auto">
+<div class="mt-4">
+    {% if not duplication%}
+    <div class="user-info">
+        <!-- Fields for users to enter their name, email, and phone -->
+        <div class="form-group">
+            <label for="user-name">{{ _("Name") }}</label>
+            <input type="text" class="form-control" id="user-name" name="user_name" {% if is_learner %} value="{{full_name}}" disabled {% endif %} required>
+        </div>
+
+        <div class="form-group">
+            <label for="user-email">{{ _("Email") }}</label>
+            <input type="email" class="form-control" id="user-email" name="user_email" {% if is_learner %} value="{{email}}" disabled {% endif %} required>
+        </div>
+
+        <div class="form-group">
+            <label for="user-phone">{{ _("Phone") }}</label>
+            <input type="tel" class="form-control" id="user-phone" name="user_phone" required>
+        </div>
+    </div>
+    
+    <div id="start-banner" class="common-card-style column-card align-items-center hide">
+        <div class="text-center my-10">
+            <div class="bold-heading" id="quiz-title" data-name="{{ quiz.name }}" data-event="{{quiz.event_name}}">
+				{{ quiz.title }}
+			</div>
+            <button class="btn btn-secondary btn-sm btn-start-quiz mt-4">
+				{{ _("Start") }}
+			</button>
+        </div>
+    </div>
+    
+    <form id="quiz-form" class="common-card-style column-card">
+        {% if has_custom %}
+        <div class="questions">
+            {% for question in quiz.questions %}
+            {% set instruction = _("") if question.type == "Multiplte Answers" else _("Type your answer") 
+                                    if question.type == "User Input" else _("Choose answer that apply") 
+                                    if question.type == "Choices" else _("Choose all answers that apply")%}
+            <div class="question" data-name="{{ question.name }}" data-type="{{ question.type }}" data-qt-index="{{ loop.index }}">
+                <div>
+                    <div class="question-number">
+                        {{ _("Question ") }}{{ loop.index }}: {{ instruction }}</div>
+                    <div class="question-text">
+                        {{ question.question }}
+                    </div>
+                </div>
+                
+                {% if question.type == "Choices" %}
+                {% set options = [question.option_1, question.option_2, question.option_3, question.option_4] %}
+                {% for option in options %}
+				{% if option %}
+				<div class="mb-2">
+					<div class="custom-checkbox">
+						<label class="option-row">
+						<input class="option" value="{{ option | urlencode }}"
+							type="radio" name="{{ question.question | urlencode }}">
+                            <div class="option-text">{{ frappe.utils.md_to_html(option) }}</div>
+						</label>
+					</div>
+				</div>
+				{% endif %}
+                {% endfor %}
+                {% endif %}
+
+                {% if question.type == "Multiple Answers" %}
+                {% set ma_options = [question.multi_answer_1, question.multi_answer_2, question.multi_answer_3, question.multi_answer_4] %}
+                {% for ma_option in ma_options %}
+				{% if ma_option %}
+				<div class="mb-2">
+					<div class="custom-checkbox">
+						<label class="option-row">
+						<input class="option" value="{{ ma_option | urlencode }}"
+							type="checkbox" name="{{ question.question | urlencode }}">
+                            <div class="option-text">{{ frappe.utils.md_to_html(ma_option) }}</div>
+						</label>
+					</div>
+				</div>
+				{% endif %}
+                {% endfor %}
+                {% endif %}
+
+                {% if question.type == "User Input" %}
+                <div class="control-input-wrapper">
+                    <div class="control-input">
+                        <textarea class="input-with-feedback form-control bold possibility mt-4" value=""
+							type="textarea" name="{{ question.question | urlencode }}" style="height: 150px;" spellcheck="false"></textarea>
+                        <!-- <textarea type="text" autocomplete="off" class="input-with-feedback form-control bold possibility mt-4" style="height: 150px;" spellcheck="false"></textarea> -->
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="" style="padding-left: 0%; text-align: right;">
+            <button class="btn btn-primary" id="summary">
+				{{ _("Submit") }}
+			</button>
+        </div>
+        
+    </form>
+
+    <div id="submission-banner" class="common-card-style column-card align-items-center hide">
+        <div class="text-center my-10">
+            <div class="bold-heading">
+				{{ _("Your response has been submitted") }}
+			</div>
+        </div>
+    </div>
+    {% endif %}
+    {% if duplication %}
+    <div id="duplication-banner" class="common-card-style column-card align-items-center">
+        <div class="text-center my-10">
+            <div class="bold-heading">
+				{{ _("You have already submitted this form!") }}
+			</div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+</div>
+{% endif %}
+{% endblock %}

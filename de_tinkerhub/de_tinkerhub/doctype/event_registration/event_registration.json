@@ -1,0 +1,174 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:EVNT-{event_title}-{YY}-{#####}",
+ "creation": "2023-07-03 17:45:07.366557",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "event",
+  "college",
+  "event_title",
+  "candidate_details_section",
+  "full_name",
+  "mobile_no",
+  "column_break_lokli",
+  "email",
+  "is_participant",
+  "add_skill",
+  "skills_from_the_event_section",
+  "skills_gained",
+  "registration_quiz_answer"
+ ],
+ "fields": [
+  {
+   "fieldname": "event",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Event",
+   "options": "Event Custom",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "event.title",
+   "fieldname": "event_title",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Event Title",
+   "read_only": 1
+  },
+  {
+   "fieldname": "candidate_details_section",
+   "fieldtype": "Section Break",
+   "label": "Candidate Details"
+  },
+  {
+   "fieldname": "column_break_lokli",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "learner.mobile_no",
+   "fieldname": "mobile_no",
+   "fieldtype": "Data",
+   "label": "Mobile No",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:frappe.user.has_role(\"Event Admin\");",
+   "fieldname": "skills_from_the_event_section",
+   "fieldtype": "Section Break",
+   "label": "Skills From The Event"
+  },
+  {
+   "depends_on": "eval:frappe.user.has_role(\"Event Admin\");",
+   "fieldname": "skills_gained",
+   "fieldtype": "Table",
+   "label": "Skills Gained",
+   "options": "Skills from the event"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email",
+   "reqd": 1
+  },
+  {
+   "fieldname": "registration_quiz_answer",
+   "fieldtype": "Table",
+   "label": "Registration Quiz Answer",
+   "options": "Registration Quiz Answer"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_participant",
+   "fieldtype": "Check",
+   "label": "Is Participant"
+  },
+  {
+   "default": "0",
+   "fieldname": "add_skill",
+   "fieldtype": "Check",
+   "label": "Add Skill"
+  },
+  {
+   "fetch_from": "event.host_college",
+   "fieldname": "college",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "College",
+   "options": "College"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-05-14 20:44:10.503528",
+ "modified_by": "Administrator",
+ "module": "De Tinkerhub",
+ "name": "Event Registration",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Event Admin",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Learner",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Administrator",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

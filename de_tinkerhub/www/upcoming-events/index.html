@@ -1,0 +1,44 @@
+{%  extends "templates/web.html" %}
+
+<div class="sidebar-column col-sm-{{ 2 }}">
+    {% block page_sidebar %}
+    {% include "templates/side-bar.html" %}
+    {% endblock %}
+</div>
+
+{% block title %}{{ _("Upcoming Events") }}{% endblock %}
+
+{% block page_content %}
+
+{% if restriction %}
+
+<div class="container">
+{% set profile_link = "<a href='/learner-profile'> profile </a>" %}
+    <div class="flex-column empty-state">
+        <div class="course-home-headings text-center mb-0" style="color: inherit;">
+            {{ _("You haven't completed your profile.") }}
+        </div>
+        <p class="medium text-center">
+            {{ _("Complete your {0} ").format(profile_link) }}
+        </p>
+    </div>
+<div>
+    
+{% else %}
+
+{% if events %}
+    <h1>Upcoming Events</h1>
+    {%- for event in events %}     
+        <div class="card flex-row justify-content-between align-items-center card w-50 p-3 my-5">
+            <a class="card-body text-dark display-6" href="{{frappe.utils.get_url()}}/{{event.route}}"> {{ event.title }} - {{ event.starting_date }}
+            </a>
+            {% if event.host_college %} <span class="text-info">College Event</span> {% endif %}
+        </div>
+    {% endfor %}
+{% else %}
+    <h2>Exciting events are coming up!</h2>
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

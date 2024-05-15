@@ -1,0 +1,43 @@
+{
+ "add_total_row": 0,
+ "columns": [
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "width": 0
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name",
+   "width": 0
+  }
+ ],
+ "creation": "2023-08-05 00:36:09.982238",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "json": "{}",
+ "modified": "2023-08-06 11:10:43.103202",
+ "modified_by": "Administrator",
+ "module": "De Tinkerhub",
+ "name": "Registration Form Submission",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Event Registration",
+ "report_name": "Registration Form Submission",
+ "report_type": "Report Builder",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Learner"
+  }
+ ]
+}

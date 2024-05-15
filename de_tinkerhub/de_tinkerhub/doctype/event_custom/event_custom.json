@@ -1,0 +1,324 @@
+{
+ "actions": [],
+ "allow_guest_to_view": 1,
+ "allow_rename": 1,
+ "autoname": "format:{######}",
+ "creation": "2023-07-03 17:44:11.302535",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "host_college",
+  "event__poster_section",
+  "event_poster",
+  "event_details_section",
+  "title",
+  "description",
+  "column_break_ngmsz",
+  "category",
+  "type",
+  "location_section",
+  "district",
+  "geo_location",
+  "column_break_p9lvp",
+  "address",
+  "status_section",
+  "status",
+  "column_break_roxao",
+  "public_event",
+  "date_time_section",
+  "starting_date",
+  "starting_time",
+  "column_break_pem5e",
+  "ending_date",
+  "ending_time",
+  "event_sec",
+  "event_session",
+  "organizers_list_section",
+  "organizers",
+  "section_break_klmam",
+  "prerequisites",
+  "skills",
+  "publish_this_event_column",
+  "is_published",
+  "route",
+  "feedback_question_section",
+  "feedback_question",
+  "column_break_xhfqu",
+  "assignment_question"
+ ],
+ "fields": [
+  {
+   "fieldname": "event_details_section",
+   "fieldtype": "Section Break",
+   "label": "Event Details"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ngmsz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Category",
+   "options": "Category"
+  },
+  {
+   "depends_on": "eval:doc.type=='Offline';",
+   "fieldname": "location_section",
+   "fieldtype": "Section Break",
+   "label": "Location "
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Data",
+   "label": "Address"
+  },
+  {
+   "fieldname": "district",
+   "fieldtype": "Link",
+   "label": "District",
+   "options": "District"
+  },
+  {
+   "fieldname": "geo_location",
+   "fieldtype": "Geolocation",
+   "label": "Geo Location"
+  },
+  {
+   "fieldname": "date_time_section",
+   "fieldtype": "Section Break",
+   "label": "Date & Time"
+  },
+  {
+   "fieldname": "column_break_pem5e",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "starting_time",
+   "fieldtype": "Time",
+   "label": "Starting Time"
+  },
+  {
+   "fieldname": "ending_time",
+   "fieldtype": "Time",
+   "label": "Ending Time"
+  },
+  {
+   "fieldname": "organizers_list_section",
+   "fieldtype": "Section Break",
+   "label": "Organizers List"
+  },
+  {
+   "fieldname": "organizers",
+   "fieldtype": "Table",
+   "label": "Organizers",
+   "options": "Organizer"
+  },
+  {
+   "fieldname": "section_break_klmam",
+   "fieldtype": "Section Break",
+   "label": "Prerequisites and Skills Gained"
+  },
+  {
+   "fieldname": "prerequisites",
+   "fieldtype": "Table",
+   "label": "Prerequisites",
+   "options": "Prerequisite"
+  },
+  {
+   "fieldname": "status_section",
+   "fieldtype": "Section Break",
+   "label": "Event Status"
+  },
+  {
+   "fieldname": "skills",
+   "fieldtype": "Table",
+   "label": "Skills",
+   "options": "Skills for the event"
+  },
+  {
+   "fieldname": "event_sec",
+   "fieldtype": "Section Break",
+   "label": "Event Session"
+  },
+  {
+   "fieldname": "event_session",
+   "fieldtype": "Table",
+   "options": "Event Session"
+  },
+  {
+   "fieldname": "publish_this_event_column",
+   "fieldtype": "Section Break",
+   "label": "Publish This Event"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_published",
+   "fieldtype": "Check",
+   "label": "Is Published"
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route"
+  },
+  {
+   "fieldname": "feedback_question_section",
+   "fieldtype": "Section Break",
+   "label": "Feedback/Assignment Question"
+  },
+  {
+   "fieldname": "feedback_question",
+   "fieldtype": "Small Text",
+   "label": "Enter feedback question"
+  },
+  {
+   "fieldname": "assignment_question",
+   "fieldtype": "Small Text",
+   "label": "Enter Assignment Question"
+  },
+  {
+   "fieldname": "column_break_xhfqu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Confirmed",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nConfirmed\nOngoing\nCompleted"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type",
+   "options": "\nOnline\nOffline",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_p9lvp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ending_date",
+   "fieldtype": "Date",
+   "label": "Ending Date"
+  },
+  {
+   "fieldname": "starting_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Starting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "event__poster_section",
+   "fieldtype": "Section Break",
+   "label": "Event  Poster"
+  },
+  {
+   "fieldname": "event_poster",
+   "fieldtype": "Attach Image",
+   "label": "Event Poster"
+  },
+  {
+   "description": "(If applicable)",
+   "fieldname": "host_college",
+   "fieldtype": "Link",
+   "label": "Host College",
+   "options": "College"
+  },
+  {
+   "default": "1",
+   "fieldname": "public_event",
+   "fieldtype": "Check",
+   "label": "Public Event"
+  },
+  {
+   "fieldname": "column_break_roxao",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "has_web_view": 1,
+ "index_web_pages_for_search": 1,
+ "is_published_field": "is_published",
+ "links": [],
+ "modified": "2023-12-15 19:24:06.573716",
+ "modified_by": "Administrator",
+ "module": "De Tinkerhub",
+ "name": "Event Custom",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Administrator",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Learner",
+   "share": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Event Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Campus Lead",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "title"
+}

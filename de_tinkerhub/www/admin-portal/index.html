@@ -1,0 +1,27 @@
+{%  extends "templates/web.html" %}
+
+{% block title %}{{ _("Event Admin Portal") }}{% endblock %}
+
+<div class="sidebar-column col-sm-{{ 2 }}">
+    {% block page_sidebar %}
+    {% include "templates/side-bar.html" %}
+    {% endblock %}
+</div>
+
+{% block page_content %}
+
+<h2>Admin Portal - Manage Events</h2>
+{% if events %}
+    {%- for event in events %}     
+        <div>
+            <h4>{{event.title}}</h4> 
+            <button class="btn"><a href="{{frappe.utils.get_url()}}/event-portal/{{event.name}}">View Registrants</a></button>
+            <button class="btn"><a href="{{frappe.utils.get_url()}}/event-creation/{{event.name}}/edit">Edit/Update Event Details</a></button>
+            <button class="btn"><a href="{{frappe.utils.get_url()}}/registration-quiz?event={{event.name}}">Add/edit Reg Questions</a></button>
+        </div>
+    {% endfor %}
+{% else %}
+    <h2>You haven't created any events yet.</h2>
+{% endif %}
+
+{% endblock %}

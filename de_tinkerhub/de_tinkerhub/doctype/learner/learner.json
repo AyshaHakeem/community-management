@@ -1,0 +1,248 @@
+{
+ "actions": [],
+ "allow_guest_to_view": 1,
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:email",
+ "creation": "2023-12-15 16:17:14.493265",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "user",
+  "section_break_obmvb",
+  "email",
+  "section_break_scwsz",
+  "full_name",
+  "column_break_u9i2u",
+  "mobile_no",
+  "learner_details_section",
+  "college_student",
+  "column_break_pn1xt",
+  "college",
+  "section_break_bwons",
+  "is_working",
+  "column_break_2g8po",
+  "your_role",
+  "column_break_wsxy9",
+  "section_break_sayti",
+  "skills",
+  "my_skills",
+  "events_participated_section",
+  "my_events",
+  "portfolio_section",
+  "portfolio",
+  "socials_section",
+  "linkedin",
+  "column_break_wjrjd",
+  "github",
+  "publish_learner_page_section",
+  "is_published",
+  "route",
+  "skill_list",
+  "restrict_profile"
+ ],
+ "fields": [
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User",
+   "options": "User",
+   "unique": 1
+  },
+  {
+   "fieldname": "section_break_obmvb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Email",
+   "options": "User",
+   "unique": 1
+  },
+  {
+   "fieldname": "section_break_scwsz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "email.full_name",
+   "fetch_if_empty": 1,
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name"
+  },
+  {
+   "fieldname": "column_break_u9i2u",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "email.mobile_no",
+   "fetch_if_empty": 1,
+   "fieldname": "mobile_no",
+   "fieldtype": "Data",
+   "label": "Mobile No"
+  },
+  {
+   "fieldname": "learner_details_section",
+   "fieldtype": "Section Break",
+   "label": "Learner Details"
+  },
+  {
+   "fieldname": "college_student",
+   "fieldtype": "Select",
+   "label": "Are you a college student?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "column_break_pn1xt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.college_student=='Yes';",
+   "fieldname": "college",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "College",
+   "mandatory_depends_on": "eval:doc.college_student=='Yes';",
+   "options": "College"
+  },
+  {
+   "fieldname": "section_break_bwons",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "is_working",
+   "fieldtype": "Select",
+   "label": "Are you currently working?",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "column_break_2g8po",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.is_working == 'Yes';",
+   "fieldname": "your_role",
+   "fieldtype": "Data",
+   "label": "Your Role"
+  },
+  {
+   "fieldname": "column_break_wsxy9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_sayti",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "skills",
+   "fieldtype": "Section Break",
+   "in_standard_filter": 1,
+   "label": "Skills"
+  },
+  {
+   "fieldname": "my_skills",
+   "fieldtype": "Table",
+   "in_standard_filter": 1,
+   "options": "My Skills"
+  },
+  {
+   "fieldname": "events_participated_section",
+   "fieldtype": "Section Break",
+   "label": "Events Participated"
+  },
+  {
+   "fieldname": "my_events",
+   "fieldtype": "Table",
+   "options": "My Events"
+  },
+  {
+   "fieldname": "portfolio_section",
+   "fieldtype": "Section Break",
+   "label": "Portfolio"
+  },
+  {
+   "fieldname": "portfolio",
+   "fieldtype": "Data"
+  },
+  {
+   "fieldname": "socials_section",
+   "fieldtype": "Section Break",
+   "label": "Socials"
+  },
+  {
+   "fieldname": "linkedin",
+   "fieldtype": "Data",
+   "label": "linkedin"
+  },
+  {
+   "fieldname": "column_break_wjrjd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "github",
+   "fieldtype": "Data",
+   "label": "GitHub"
+  },
+  {
+   "fieldname": "publish_learner_page_section",
+   "fieldtype": "Section Break",
+   "label": "Publish Learner Page"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_published",
+   "fieldtype": "Check",
+   "label": "Is Published"
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route"
+  },
+  {
+   "fieldname": "skill_list",
+   "fieldtype": "Small Text",
+   "in_standard_filter": 1,
+   "label": "Skill List",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "restrict_profile",
+   "fieldtype": "Check",
+   "label": "Restrict Profile"
+  }
+ ],
+ "has_web_view": 1,
+ "index_web_pages_for_search": 1,
+ "is_published_field": "is_published",
+ "links": [],
+ "modified": "2023-12-15 16:17:14.493265",
+ "modified_by": "Administrator",
+ "module": "De Tinkerhub",
+ "name": "Learner",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Administrator",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "full_name"
+}

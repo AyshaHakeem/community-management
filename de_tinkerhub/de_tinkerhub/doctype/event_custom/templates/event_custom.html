@@ -1,0 +1,101 @@
+{% extends "templates/web.html" %}
+
+<div class="sidebar-column col-sm-{{ 2 }}">
+    {% block page_sidebar %}
+    {% include "templates/side-bar.html" %}
+    {% endblock %}
+</div>
+
+{% block page_content %}
+
+<div class="breadcrumb">
+    {% if registrant %}
+    <a class="dark-links" href="/upcoming-events">{{ _("My Events") }}</a>
+    {% else %}
+    <a class="dark-links" href="/my-events">{{ _("Upcoming Events") }}</a>
+    {% endif %}
+    <img class="ml-1 mr-1" src="/assets/lms/icons/chevron-right.svg">
+    <span class="breadcrumb-destination">{{ title  }}</span>
+</div>
+
+{% if event_poster %}
+<img style="width:500px;" src="{{event_poster}}" >
+{% endif %}
+
+<h1>{{ title }}</h1>
+
+<!-- Description -->
+{% if description %}
+<p>{{ description }}</p> 
+{% endif %}
+<!-- Register -->
+{% if not registrant and status == "Confirmed" %}
+<button class="btn register-btn border" onclick=""><a href="{{frappe.utils.get_url()}}/submit-reg-quiz?event={{name}}">Register Now</a></button>
+
+{% endif %}
+<!-- Assignment -->
+{% if participant and assignment_question and status=='Ongoing' %}
+<button class="btn" onclick="assignment_dialog('{{assignment_question}}')">Submit Assignment</button>
+{%endif%}
+<!-- Feedback -->
+{% if participant and feedback_question and status=='Completed' %}
+<button class="btn" onclick="feedback_dialog('{{feedback_question}}')">Submit Feedback</button>
+{%endif%}
+<h4>{{ starting_date }}</h4> 
+
+<span>{{ ending_date }}</span> 
+
+<!-- Prerequisites -->
+{% if prerequisites %}
+<div>
+    <h3>Prerequisites</h3>
+    <ol>
+        {% for x in prerequisites %}
+        <li>{{x.prerequisite}}</li>
+        {% endfor %}
+    </ol>
+</div>
+{% endif %}
+<!-- Location -->
+{% if district or address %}
+<div>
+    <h3>Location</h3>
+    <p>{{district}}</p>
+    <p>{{address}}</p>
+</div>
+{% endif %}
+<!-- sessions -->
+{% if event_session %}
+<h2>Event Sessions</h2>
+    {% for session in event_session %}
+    <div style="border:1px solid black;">
+        <h3>{{ session.title }}</h3>
+        <p> {{ session.description }}</p>
+        <p>{{session.from_time}}</p>
+    </div>
+    {% endfor %}
+{% endif %}
+
+<!-- organizers -->
+
+{% if organizers %}
+<h2>Event Organizers</h2>
+    <div style="display:flex; margin-right:20px;">
+        {% for organizer in organizers %}
+        <div style="margin-right:20px;">
+            <p>{{organizer.full_name}}</p>
+            <span>{{organizer.email}}</span> <br>
+            {% if organizer.mobile %}
+            <span>{{organizer.mobile}}</span> 
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    
+{% endif %}
+
+{% endblock %}
+{%- block script %}
+    {{ include_script('controls.bundle.js') }}
+{% endblock %}
+<!-- this is a sample default web page template -->

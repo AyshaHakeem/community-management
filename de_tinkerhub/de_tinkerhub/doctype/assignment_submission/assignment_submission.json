@@ -1,0 +1,101 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{event}",
+ "creation": "2023-07-19 22:32:18.316710",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "event",
+  "column_break_zaaoc",
+  "college",
+  "column_break_hy71z",
+  "learner",
+  "section_break_esajt",
+  "question",
+  "user_response"
+ ],
+ "fields": [
+  {
+   "fieldname": "column_break_zaaoc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "learner",
+   "fieldtype": "Link",
+   "label": "Learner",
+   "options": "Learner"
+  },
+  {
+   "fieldname": "section_break_esajt",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "assignment.question",
+   "fieldname": "question",
+   "fieldtype": "Small Text",
+   "label": "Question"
+  },
+  {
+   "fieldname": "user_response",
+   "fieldtype": "Data",
+   "label": "User Response"
+  },
+  {
+   "fieldname": "event",
+   "fieldtype": "Link",
+   "label": "Event",
+   "options": "Event Custom"
+  },
+  {
+   "fetch_from": "event.host_college",
+   "fieldname": "college",
+   "fieldtype": "Link",
+   "label": "College",
+   "options": "College"
+  },
+  {
+   "fieldname": "column_break_hy71z",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-05-14 20:44:11.375823",
+ "modified_by": "Administrator",
+ "module": "De Tinkerhub",
+ "name": "Assignment Submission",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Learner",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

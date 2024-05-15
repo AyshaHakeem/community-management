@@ -1,0 +1,120 @@
+{% extends "templates/base.html" %}
+{% block title %}
+    {{ _("Registration Questions") }}
+{% endblock %}
+
+{% block content %}
+<div class="common-page-style">
+    {{ Header(quiz) }}
+    <div class="container form-width">
+        {{ QuizForm(quiz) }}
+    </div>
+</div>
+{% endblock %}
+
+{% macro QuizForm(quiz) %}
+<div id="quiz-form" data-event="{{quiz.event_name}}" {% if quiz.name %} data-name="{{ quiz.name }}" data-index="{{ quiz.questions | length }}" {% endif %}>
+    {{ QuizDetails(quiz) }}
+    {% if quiz.questions %}
+        <div class="field-group">
+            <div class="field-label mb-1">
+                {{ _("Questions") }}
+            </div>
+            <div class="common-card-style column-card px-3 py-0">
+                {% for question in quiz.questions %}
+                    {{ Question(question, loop.index) }}
+                {% endfor %}
+            </div>
+            <button class="btn btn-secondary btn-sm btn-add-question mt-4">
+                {{ _("Add Question") }}
+            </button>
+        </div>
+    {% endif %}
+    {% if quiz.name and not quiz.questions | length %}
+        {{ EmptyState() }}
+    {% endif %}
+</div>
+{% endmacro %}
+
+{% macro Header(quiz) %}
+<header class="sticky">
+    
+    <div class="container form-width">
+        
+        <div class="edit-header">
+            <div>
+                <div class="page-title">
+                    {{ _("Registration form for ") }}{{quiz.event_title}}
+                </div>
+            </div>
+
+            <div class="align-self-center">
+                {% if quiz.name %}
+                <button class="btn btn-secondary btn-sm btn-add-question mr-2">
+                    {{ _("Add Question") }}
+                </button>
+                {% endif %}
+                <button class="btn btn-primary btn-sm btn-save-quiz">
+                    {{ _("Save") }}
+                </button>
+            </div>
+
+        </div>
+    </div>
+</header>
+{% endmacro  %}
+
+{% macro QuizDetails(quiz) %}
+<div class="field-parent">
+    <div class="field-group">
+        <div>
+            <div class="field-label reqd">
+                {{ _("Title") }}
+            </div>
+            <div class="field-description">
+                {{ _("Registration form title") }}
+            </div>
+        </div>
+        <div class="">
+            <input type="text" class="field-input" id="quiz-title" {% if quiz.name %} value="{{ quiz.title }}" data-title="{{ quiz.title }}" {% endif %}>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro Question(question, index) %}
+{% set type = question.type if question.type else "Choices" %}
+<div class="list-row question-row" role="button" data-question="{{ question.name }}">
+    <div class="flex clickable">
+       <span class="mr-1">
+            {{ index }}.
+        </span>
+        {{ question.question.split("\n")[0] }}
+    </div>
+</div>
+{% endmacro %}
+
+{% macro EmptyState() %}
+<article class="empty-state my-5">
+    <div class="text-center">
+        <div class="bold-heading">
+            {{ _("You have not added any question yet") }}
+        </div>
+        <div>
+            {{ _("Create and manage questions from here.") }}
+        </div>
+        <div class="mt-4">
+            <button class="btn btn-default btn-sm btn-add-question">
+                <span>
+                    {{ _("Add Question") }}
+                </span>
+            </button>
+        </div>
+    </div>
+</article>
+{% endmacro %}
+
+{%- block script %}
+    {{ super() }}
+    {{ include_script('controls.bundle.js') }}
+{% endblock %}

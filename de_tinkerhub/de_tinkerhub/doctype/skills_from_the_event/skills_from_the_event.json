@@ -1,0 +1,38 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-08 12:54:44.468797",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "skill",
+  "gained"
+ ],
+ "fields": [
+  {
+   "fieldname": "skill",
+   "fieldtype": "Link",
+   "label": "Skill",
+   "options": "Skills"
+  },
+  {
+   "default": "0",
+   "fieldname": "gained",
+   "fieldtype": "Check",
+   "label": "Gained"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-07-08 13:00:33.862764",
+ "modified_by": "Administrator",
+ "module": "De Tinkerhub",
+ "name": "Skills from the event",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
