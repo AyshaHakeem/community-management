@@ -5,7 +5,6 @@ A web application built on the Frappe framework for managing specific campus com
 ## Features
 
 - **Community Chapter Management**: Keep track of community chapters spread across different colleges, including the members of each chapter and related events.
-- ****
 - **Event Creation**: Campus leads and event admins can create public events or events exclusive to college students.
 - **Attendance Tracking**: Record attendance of event registrants efficiently.
 - **Skill Enhancement**: Add skills to learner profiles upon event completion.
